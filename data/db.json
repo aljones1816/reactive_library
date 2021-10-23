@@ -1,0 +1,18 @@
+{
+    "books": [
+      {
+        "title": "title1",
+        "pages": 1,
+        "author": "auth1",
+        "status": false,
+        "id": 1
+      },
+      {
+        "title": "title2",
+        "pages": 2,
+        "author": "auth2",
+        "status": false,
+        "id": 2
+      }
+    ]
+  }
