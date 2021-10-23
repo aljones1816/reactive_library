@@ -1,16 +1,15 @@
 import { useState } from "react";
 
-const AddBook = () => {
+const AddBook = ({ handler }: { handler: any }) => {
 
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [pages, setPages] = useState('');
-    const summary = '';
     const [status, setStatus] = useState(false);
 
     const handleSubmit = (e: any) => {
-
-        const book = { title, pages, author, summary, status };
+        e.preventDefault();
+        const book = { title, pages, author, status };
 
         fetch('http://localhost:8000/books', {
             method: 'POST',
@@ -20,7 +19,7 @@ const AddBook = () => {
             console.log('new book added')
         })
 
-
+        handler();
     }
 
     return (
@@ -48,6 +47,11 @@ const AddBook = () => {
                     value={pages}
                     onChange={(e) => setPages(e.target.value)}
 
+                />
+                <label>Read status:</label>
+                <input
+                    type="checkbox"
+                    onChange={(e) => setStatus(true)}
                 />
                 <button>Add book</button>
             </form>
