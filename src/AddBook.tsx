@@ -24,7 +24,7 @@ const AddBook = ({ handler }: { handler: any }) => {
 
     return (
         <div className="add-book">
-            <h1>Add a New Book</h1>
+            <h2>Add a New Book</h2>
             <form onSubmit={handleSubmit}>
                 <label>Book Title:</label>
                 <input

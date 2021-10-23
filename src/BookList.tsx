@@ -1,11 +1,11 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddBook from "./AddBook";
 import BookCard from "./BookCard";
 
 
 const BookList = ({ books }: { books: any }) => {
-
     const [bookData, setBookData] = useState(books);
+
 
     const handleUpdateList = async () => {
         const response = await fetch('http://localhost:8000/books/');
@@ -13,21 +13,15 @@ const BookList = ({ books }: { books: any }) => {
         setBookData(data);
     };
 
-    const handleEditBook = (id: any) => {
-        
-        const newbook = {
-            title:"PSYCH!!",
-            pages: 37,
-            author: "PSYCH!!!",
-            status: false,
-            id: id
-        };
-        
-        fetch('http://localhost:8000/books/' + id, {
-            method: 'PUT',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newbook)
-        }).then(() => {handleUpdateList()});
+    const handleEditBook = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const bookID = e.currentTarget.parentElement?.id
+        if (!bookID) {
+            return
+        }
+        //TODO: Render Edit book component
+        // use a chakra modal and will set boolean to true to render
+        // will need to pass to the modal (import modal, modal overlay, content)
+        // pass in book object with modal content
 
     }
 
@@ -39,21 +33,19 @@ const BookList = ({ books }: { books: any }) => {
         });
     }
 
+    useEffect(() => {
+        //TODO: make API call
+        //TODO Updatebooks
+    }, [])
+
+
 
     return (
-        <div>
-            <AddBook handler={handleUpdateList} />
-            {bookData.map((book: any) => (
-                <div key={book.id}>
-                <BookCard  book={book} />
-                <button onClick={() => {handleEditBook(book.id)}}>Try me!</button>
-                <button onClick = {() => {handleDelete(book.id)}}>delete me!!!</button>
-                </div>
-            )
-            
-            )}
 
-        </div>
+        bookData.map((book: any) => (
+            <BookCard key={book.id} book={book} />
+        )
+        )
     )
 }
 

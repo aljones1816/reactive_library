@@ -2,7 +2,7 @@
 const BookCard = ({ book }: { book: any }) => {
 
     return (
-        <div>
+        <div id = {book.id}>
             <h2>Title: {book.title}</h2>
             <p>Author: {book.author}</p>
             <p>Pages: {book.pages}</p>

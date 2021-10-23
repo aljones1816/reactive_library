@@ -1,4 +1,4 @@
-const EditBook = () => {
+const EditBook = (handleEdit: any) => {
 
 }
 
