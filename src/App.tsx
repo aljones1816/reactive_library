@@ -1,14 +1,16 @@
 
-import Library from "./Library";
+import { Fragment } from "react";
+import {Library} from "./Library";
+import NavBar from "./NavBar";
 
 
 function App() {
 
   return (
-    <div>
-      
+    <Fragment>
+      <NavBar />
       <Library />
-    </div>
+    </Fragment>
   );
 }
 

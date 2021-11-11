@@ -1,52 +1,62 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import AddBook from "./AddBook";
 import BookCard from "./BookCard";
+import EditBook from "./EditBook";
 
 
-const BookList = ({ books }: { books: any }) => {
-    const [bookData, setBookData] = useState(books);
+export interface Book {
+    title: string;
+    author: string;
+    pages: number;
+    id : number;
+}
 
+interface BookListProps {
+    updateLibrary: (arg: string) => void;
+    books: Book[];
+}
+export const BookList = (props: BookListProps) => {
 
-    const handleUpdateList = async () => {
-        const response = await fetch('http://localhost:8000/books/');
-        const data = await response.json();
-        setBookData(data);
-    };
+    const { books, updateLibrary } = props;
+    const [bookToEdit, setBookToEdit] = useState<Book | undefined>();
 
     const handleEditBook = (e: React.MouseEvent<HTMLButtonElement>) => {
         const bookID = e.currentTarget.parentElement?.id
         if (!bookID) {
-            return
+            return;
         }
-        //TODO: Render Edit book component
-        // use a chakra modal and will set boolean to true to render
-        // will need to pass to the modal (import modal, modal overlay, content)
-        // pass in book object with modal content
+        setBookToEdit(books.find((x) => x.id == Number(bookID)))
+       
 
     }
 
-    const handleDelete = (id: any) => {
-        fetch('http://localhost:8000/books/' + id, {
+
+    const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const bookID = e.currentTarget.parentElement?.id;
+        const url = 'http://localhost:8000/books/';
+        if (!bookID) {
+            return;
+        }
+        fetch(url + bookID, {
             method: 'DELETE'
         }).then(() => {
-            handleUpdateList();
-        });
+            updateLibrary(url);
+        })
     }
 
-    useEffect(() => {
-        //TODO: make API call
-        //TODO Updatebooks
-    }, [])
 
-
-
-    return (
-
-        bookData.map((book: any) => (
-            <BookCard key={book.id} book={book} />
+return (
+    <div>
+        <AddBook updateLibrary={updateLibrary} />
+        {books.map((book: any) => (
+                <BookCard key={book.id} book={book} handleDelete={handleDelete} handleEditBook = {handleEditBook}/>
         )
-        )
-    )
+        )}
+        {!!bookToEdit && (
+            <EditBook bookToEdit = {bookToEdit} updateLibrary = {updateLibrary} resetBookToEdit={setBookToEdit}/>
+        )}
+        
+    </div>
+)
 }
 
-export default BookList;

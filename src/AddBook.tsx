@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-const AddBook = ({ handler }: { handler: any }) => {
+interface AddBookProps {
+    updateLibrary(url: string): void;
+    
+
+}
+const AddBook = (props: AddBookProps) => {
+
+    const { updateLibrary} = props;
 
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -17,9 +24,13 @@ const AddBook = ({ handler }: { handler: any }) => {
             body: JSON.stringify(book)
         }).then(() => {
             console.log('new book added')
+            setTitle('');
+            setAuthor('');
+            setPages('');
+            setStatus(false);
         })
 
-        handler();
+        updateLibrary('http://localhost:8000/books/');
     }
 
     return (
@@ -51,7 +62,7 @@ const AddBook = ({ handler }: { handler: any }) => {
                 <label>Read status:</label>
                 <input
                     type="checkbox"
-                    onChange={(e) => setStatus(true)}
+                    onChange={(e) => setStatus(false)}
                 />
                 <button>Add book</button>
             </form>
