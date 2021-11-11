@@ -46,7 +46,9 @@ const EditBook = (props: EditProps) => {
     }
 
         return (
-            <div className = "modal-background">
+            <div className = "modal-background" onClick={(event: React.MouseEvent<HTMLElement>) => {
+                resetBookToEdit(undefined)
+            }}>
             <div className="add-book modal">
                 <h2>Edit book {bookToEdit.title}</h2>
                 <form >
