@@ -1,17 +1,11 @@
 {
   "books": [
     {
-      "title": "readhjh",
-      "pages": "1",
-      "author": "read",
-      "id": 1
-    },
-    {
-      "title": "jhgjhjhg",
-      "pages": "666",
-      "author": "jhggj",
+      "title": "dfdf",
+      "pages": "44",
+      "author": "dfdf",
       "status": false,
-      "id": 2
+      "id": 3
     }
   ]
 }

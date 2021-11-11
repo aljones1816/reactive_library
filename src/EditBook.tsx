@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './editbook.css';
 
 
 interface EditProps {
@@ -45,7 +46,8 @@ const EditBook = (props: EditProps) => {
     }
 
         return (
-            <div className="add-book">
+            <div className = "modal-background">
+            <div className="add-book modal">
                 <h2>Edit book {bookToEdit.title}</h2>
                 <form >
                     <label>Book Title:</label>
@@ -76,6 +78,7 @@ const EditBook = (props: EditProps) => {
                 </form>
 
 
+            </div>
             </div>
         )
     
