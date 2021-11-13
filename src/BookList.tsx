@@ -9,8 +9,9 @@ import {AiOutlinePlus} from 'react-icons/ai'
 export interface Book {
     title: string;
     author: string;
-    pages: number;
-    id : number;
+    pages: number | undefined ;
+    id : number | undefined;
+    status: boolean;
 }
 
 interface BookListProps {
@@ -68,7 +69,7 @@ return (
             </div>
         </div>
         {books.map((book: any) => (
-                <BookCard key={book.id} book={book} handleDelete={handleDelete} handleEditBook = {handleEditBook}/>
+                <BookCard updateLibrary= {updateLibrary} key={book.id} book={book} handleDelete={handleDelete} handleEditBook = {handleEditBook} />
         )
         )}
         </div>

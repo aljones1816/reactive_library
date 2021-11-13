@@ -1,25 +1,3 @@
 {
-  "books": [
-    {
-      "title": "df",
-      "pages": "44",
-      "author": "df",
-      "status": false,
-      "id": 1
-    },
-    {
-      "title": "ddf",
-      "pages": "44",
-      "author": "df",
-      "status": false,
-      "id": 4
-    },
-    {
-      "title": "df",
-      "pages": "44",
-      "author": "df",
-      "status": false,
-      "id": 5
-    }
-  ]
+  "books": []
 }

@@ -67,7 +67,7 @@ const AddBook = (props: AddBookProps) => {
                 <label>Read status:</label>
                 <input
                     type="checkbox"
-                    onChange={(e) => setStatus(false)}
+                    onChange={(e) => setStatus(!status)}
                 />
                 <button className = "button">Add</button>
             </form>
