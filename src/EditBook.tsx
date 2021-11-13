@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import './editbook.css';
+
 
 
 interface EditProps {
@@ -48,7 +48,7 @@ const EditBook = (props: EditProps) => {
         return (
             
             <div >
-                <h2>Edit book {bookToEdit.title}</h2>
+                <h2>Edit {bookToEdit.title}</h2>
                 <form >
                     <label>Book Title:</label>
                     <input
@@ -76,6 +76,7 @@ const EditBook = (props: EditProps) => {
                     <button onClick={handleSubmit}>Save</button>
 
                 </form>
+                <button onClick = {() => {resetBookToEdit(undefined)}}>Cancel</button>
 
 
             </div>

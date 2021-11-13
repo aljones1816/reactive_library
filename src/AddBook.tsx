@@ -2,12 +2,12 @@ import { useState } from "react";
 
 interface AddBookProps {
     updateLibrary(url: string): void;
-    
+    setBool: any;
 
 }
 const AddBook = (props: AddBookProps) => {
 
-    const { updateLibrary} = props;
+    const { updateLibrary, setBool} = props;
 
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -28,9 +28,14 @@ const AddBook = (props: AddBookProps) => {
             setAuthor('');
             setPages('');
             setStatus(false);
+        }).then(() => {
+            updateLibrary('http://localhost:8000/books/');
+        }).then(() => {
+            setBool(false);
         })
 
-        updateLibrary('http://localhost:8000/books/');
+        
+        
     }
 
     return (
@@ -66,6 +71,7 @@ const AddBook = (props: AddBookProps) => {
                 />
                 <button>Add book</button>
             </form>
+            <button onClick ={ () => {setBool(false)}}>Cancel</button>
 
 
         </div>

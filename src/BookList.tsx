@@ -20,6 +20,7 @@ export const BookList = (props: BookListProps) => {
 
     const { books, updateLibrary } = props;
     const [bookToEdit, setBookToEdit] = useState<Book | undefined>();
+    const [bool,setBool] = useState(false);
 
     const handleEditBook = (e: React.MouseEvent<HTMLButtonElement>) => {
         const bookID = e.currentTarget.parentElement?.id
@@ -29,6 +30,10 @@ export const BookList = (props: BookListProps) => {
         setBookToEdit(books.find((x) => x.id == Number(bookID)))
        
 
+    }
+
+    const handleBool = () => {
+        setBool(!bool);
     }
 
 
@@ -48,14 +53,21 @@ export const BookList = (props: BookListProps) => {
 
 return (
     <div>
-        <AddBook updateLibrary={updateLibrary} />
+        <button onClick = {handleBool}>Add book</button>
+        
+        {!!bool && (
+            <Modal resetBookToEdit={setBookToEdit} setBool = {setBool}>
+                <AddBook updateLibrary={updateLibrary} setBool={setBool} />
+            </Modal>
+        )}
+        
         {books.map((book: any) => (
                 <BookCard key={book.id} book={book} handleDelete={handleDelete} handleEditBook = {handleEditBook}/>
         )
         )}
         {!!bookToEdit && (
-            <Modal resetBookToEdit={setBookToEdit}>
-            <EditBook bookToEdit = {bookToEdit} updateLibrary = {updateLibrary} resetBookToEdit={setBookToEdit}/>
+            <Modal resetBookToEdit={setBookToEdit} setBool = {setBool}>
+            <EditBook  bookToEdit = {bookToEdit} updateLibrary = {updateLibrary} resetBookToEdit={setBookToEdit}/>
             </Modal>
         )}
         
