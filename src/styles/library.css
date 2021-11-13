@@ -149,7 +149,14 @@ html {
     
 }
 
+.editCard:hover .plus-icon {
+    transition: 0.5s;
+    color: rgb(139, 139, 139);
+    
+  }
+
 .plus-icon {
     font-size:10em;
     color: rgb(173, 173, 173);
 }
+

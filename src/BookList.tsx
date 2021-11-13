@@ -62,7 +62,7 @@ return (
             </Modal>
         )}
         <div className="card-grid">
-        <div className = "bookCard" onClick = {handleBool}>
+        <div className = "bookCard editCard" onClick = {handleBool}>
             <div className = "plus-container">
             <AiOutlinePlus className="plus-icon"/>
             </div>
