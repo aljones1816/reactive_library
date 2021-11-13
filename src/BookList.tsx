@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import AddBook from "./AddBook";
 import BookCard from "./BookCard";
 import EditBook from "./EditBook";
+import Modal from "./Modal";
 
 
 export interface Book {
@@ -53,7 +54,9 @@ return (
         )
         )}
         {!!bookToEdit && (
+            <Modal resetBookToEdit={setBookToEdit}>
             <EditBook bookToEdit = {bookToEdit} updateLibrary = {updateLibrary} resetBookToEdit={setBookToEdit}/>
+            </Modal>
         )}
         
     </div>
