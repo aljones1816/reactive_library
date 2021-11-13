@@ -1,5 +1,4 @@
 
-import { Fragment } from "react";
 import {Library} from "./Library";
 import NavBar from "./NavBar";
 
@@ -7,10 +6,10 @@ import NavBar from "./NavBar";
 function App() {
 
   return (
-    <Fragment>
+    <div className="container">
       <NavBar />
       <Library />
-    </Fragment>
+    </div>
   );
 }
 

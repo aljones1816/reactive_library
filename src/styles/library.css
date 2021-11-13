@@ -1,0 +1,155 @@
+html {
+    font-family: Arial;
+    
+}
+
+.header {
+    grid-area: header;
+    border-bottom: 2px solid lightgray;
+    display: inline-block;
+    text-align: center;
+  }
+
+.content {
+    grid-area: content;
+  }
+
+  .container {
+    
+    display: grid;
+    gap: 20px;
+    grid-template-areas:
+      "header"
+      "content"
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-right: 1rem;
+  }
+
+  @media (min-width: 1080px) {
+    .container {
+      grid-template-columns: 270px 3fr;
+      grid-template-areas:
+        "header  content"
+    }
+    .header {
+        border-right: 2px solid lightgray;
+        border-bottom: none;
+        max-width: 270px;
+    }
+    .modal {
+      max-width: 400px;
+      margin: 200px auto;
+    }
+    
+  }
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    
+    border-radius:12px;
+  }
+
+  .button:hover {
+    background-color: #337535;
+  }
+
+  #saveBook {
+    width: 45%;
+    margin-left: 1.5%;
+    margin-right: 2.5%
+  }
+
+  #openModal {
+    width: 75%;
+    max-width: 250px;
+    
+  }
+
+  .cancel-button {
+    width: 45%;
+    background-color: #949494; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 2.5%;
+    margin-right: 1.5%;
+    border-radius:12px;
+  }
+
+  .cancel-button:hover {
+    background-color: #575757;
+  }
+
+  .edit-button {
+      float: right;
+    color: #008CBA; 
+    font-size:2em;
+    cursor: pointer;}
+
+    .edit-button:hover {
+        color: #006f94; 
+      }
+
+  .delete-button {
+    float: right;
+    color: #f44336; 
+    font-size:2em;
+    cursor: pointer;
+  }
+
+  .delete-button:hover {
+    color: #ac2e25; 
+  }
+
+  .update-button {
+    
+    background-color: #008CBA; 
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    
+    font-size: 16px;
+    margin: 4px;
+    border-radius:12px;
+    border:none;
+  }
+
+  .update-button:hover {
+    background-color: #005d7c;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+.plus-container {
+    
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.plus-icon {
+    font-size:10em;
+    color: rgb(173, 173, 173);
+}

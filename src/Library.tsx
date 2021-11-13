@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {BookList} from "./BookList";
+import "./styles/library.css"
 
 export const Library = () => {
 

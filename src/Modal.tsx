@@ -1,4 +1,4 @@
-import './editbook.css';
+import './styles/modal.css';
 
 interface ModalProps {
     resetBookToEdit: (arg: any) => void;
