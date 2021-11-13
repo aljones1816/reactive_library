@@ -1,6 +1,4 @@
 .modal {
-    
-  
     padding: 1%;
     width: 90%;
     max-width: 400px;
@@ -11,8 +9,6 @@
 }
 
 .modal-background {
-
-  
     background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
   top: 0;

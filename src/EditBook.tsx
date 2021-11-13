@@ -46,10 +46,8 @@ const EditBook = (props: EditProps) => {
     }
 
         return (
-            <div className = "modal-background" onClick={(event: React.MouseEvent<HTMLElement>) => {
-                resetBookToEdit(undefined)
-            }}>
-            <div className="add-book modal">
+            
+            <div >
                 <h2>Edit book {bookToEdit.title}</h2>
                 <form >
                     <label>Book Title:</label>
@@ -81,7 +79,7 @@ const EditBook = (props: EditProps) => {
 
 
             </div>
-            </div>
+            
         )
     
 }
