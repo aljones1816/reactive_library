@@ -98,6 +98,7 @@ html {
 
   .edit-button {
       float: right;
+      margin-right: 10px;
     color: #008CBA; 
     font-size:2em;
     cursor: pointer;}
