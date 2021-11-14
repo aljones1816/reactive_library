@@ -74,8 +74,8 @@ const EditBook = (props: EditProps) => {
 
                     />
                     <div className="form-buttons">
-                    <button className = "button" onClick={handleSubmit}>Save</button>
-                    <button className = "cancel-button" onClick = {() => {resetBookToEdit(undefined)}}>Cancel</button>
+                    <button className = "button" type="submit" onClick={handleSubmit}>Save</button>
+                    <button className = "cancel-button" type="button" onClick = {() => {resetBookToEdit(undefined)}}>Cancel</button>
                     </div>
                 </form>
                 
