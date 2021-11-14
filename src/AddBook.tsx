@@ -69,9 +69,12 @@ const AddBook = (props: AddBookProps) => {
                     type="checkbox"
                     onChange={(e) => setStatus(!status)}
                 />
+                <div className="form-buttons">
                 <button className = "button">Add</button>
+                <button className = "cancel-button" onClick ={ () => {setBool(false)}}>Cancel</button>
+                </div>
             </form>
-            <button className = "cancel-button" onClick ={ () => {setBool(false)}}>Cancel</button>
+            
 
 
         </div>

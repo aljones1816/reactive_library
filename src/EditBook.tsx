@@ -69,14 +69,16 @@ const EditBook = (props: EditProps) => {
                     <input
                         type="number"
                         required
-                        value={bookToEdit.pages}
+                        value={pages}
                         onChange={(e) => setPages(e.target.value)}
 
                     />
+                    <div className="form-buttons">
                     <button className = "button" onClick={handleSubmit}>Save</button>
-
+                    <button className = "cancel-button" onClick = {() => {resetBookToEdit(undefined)}}>Cancel</button>
+                    </div>
                 </form>
-                <button className = "cancel-button" onClick = {() => {resetBookToEdit(undefined)}}>Cancel</button>
+                
 
 
             </div>
