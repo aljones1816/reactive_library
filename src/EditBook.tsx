@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-
+import {projectFirestore} from './firebase/config'
 
 
 interface EditProps {
     bookToEdit: any;
-    updateLibrary: (arg: string) => void;
+    updateLibrary: () => void;
     resetBookToEdit: (arg: any) => void;
 }
 
@@ -33,12 +33,9 @@ const EditBook = (props: EditProps) => {
         
         const editedBook = { title, pages, author };
 
-        fetch('http://localhost:8000/books/' + id, {
-            method: 'PUT',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(editedBook)
-        }).then(() => {
-            updateLibrary('http://localhost:8000/books/');
+        projectFirestore.collection('books').doc(id).update(editedBook)
+        .then(() => {
+            updateLibrary();
             resetBookToEdit(undefined);
         })
 

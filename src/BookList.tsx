@@ -4,18 +4,19 @@ import BookCard from "./BookCard";
 import EditBook from "./EditBook";
 import Modal from "./Modal";
 import {AiOutlinePlus} from 'react-icons/ai'
+import { projectFirestore } from "./firebase/config";
 
 
 export interface Book {
     title: string;
     author: string;
     pages: number | undefined ;
-    id : number | undefined;
+    id : string | undefined;
     status: boolean;
 }
 
 interface BookListProps {
-    updateLibrary: (arg: string) => void;
+    updateLibrary: () => void;
     books: Book[];
 }
 export const BookList = (props: BookListProps) => {
@@ -29,7 +30,7 @@ export const BookList = (props: BookListProps) => {
         if (!bookID) {
             return;
         }
-        setBookToEdit(books.find((x) => x.id === Number(bookID)))
+        setBookToEdit(books.find((x) => x.id === bookID))
        
 
     }
@@ -41,14 +42,13 @@ export const BookList = (props: BookListProps) => {
 
     const handleDelete = (e: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<SVGElement,MouseEvent> ) => {
         const bookID = e.currentTarget.parentElement?.id;
-        const url = 'http://localhost:8000/books/';
+        
         if (!bookID) {
             return;
         }
-        fetch(url + bookID, {
-            method: 'DELETE'
-        }).then(() => {
-            updateLibrary(url);
+        projectFirestore.collection('books').doc(bookID).delete()
+        .then(() => {
+            updateLibrary();
         })
     }
 

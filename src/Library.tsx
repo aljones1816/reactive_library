@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {BookList} from "./BookList";
 import NavBar from "./NavBar";
 import "./styles/library.css"
+import { projectFirestore } from "./firebase/config";
 
 export const Library = () => {
     const [url, setUrl] = useState('http://localhost:8000/books/')
@@ -11,25 +12,21 @@ export const Library = () => {
         setUrl(url);
     }
 
-    const updateLibrary = (url: string): void => {
-        fetch(url)
-            .then(res => {
-                return res.json();
+    const updateLibrary = (): any => {
+        projectFirestore.collection('books').get().then((snapshot) => {
+            let results: any[] = [];
+            snapshot.docs.forEach(doc => {
+                results.push({id: doc.id, ...doc.data()})
             })
-            .then(data => {
-                setBooks(data);
-            }
-            )
-
+            setBooks(results)
+        })
             
     };
 
 
     useEffect(() => {
-        
-        updateLibrary(url);
-        
-    }, [url]);
+        updateLibrary();
+    }, []);
 
     return (
         <div className="container">

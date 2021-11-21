@@ -2,12 +2,13 @@ import './styles/bookcard.css';
 import {FaWindowClose} from 'react-icons/fa'
 import {AiFillEdit} from 'react-icons/ai'
 import React, { useState } from 'react';
+import { projectFirestore } from './firebase/config'
 
 type BookCardProps = {
     handleDelete: (e: React.MouseEvent<HTMLButtonElement>| React.MouseEvent<SVGElement,MouseEvent>) => void;
     handleEditBook: (e: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<SVGElement,MouseEvent>) => void;
     book: any;
-    updateLibrary: (arg: string) => void;
+    updateLibrary: () => void;
 };
 const BookCard= (props: BookCardProps) => {
     const { handleDelete,handleEditBook, book, updateLibrary} = props;
@@ -21,12 +22,9 @@ const BookCard= (props: BookCardProps) => {
             id: book.id
         }
         
-        fetch('http://localhost:8000/books/' + book.id, {
-            method: 'PUT',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(tempBook)
-        }).then(() => {
-            updateLibrary('http://localhost:8000/books/');
+        projectFirestore.collection('books').doc(book.id).update(tempBook)
+        .then(() => {
+            updateLibrary();
             
         })
 

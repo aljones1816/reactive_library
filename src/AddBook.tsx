@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { projectFirestore } from './firebase/config'
 
 interface AddBookProps {
     updateLibrary(url: string): void;
@@ -18,12 +19,9 @@ const AddBook = (props: AddBookProps) => {
         e.preventDefault();
         const book = { title, pages, author, status };
 
-        fetch('http://localhost:8000/books', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(book)
-        }).then(() => {
-            console.log('new book added')
+        
+        projectFirestore.collection('books').add(book)
+        .then(() => {
             setTitle('');
             setAuthor('');
             setPages('');
