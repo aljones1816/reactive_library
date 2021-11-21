@@ -11,17 +11,17 @@ type BookCardProps = {
 };
 const BookCard= (props: BookCardProps) => {
     const { handleDelete,handleEditBook, book, updateLibrary} = props;
-    const [theBook, setTheBook] = useState(book);
+   
     const handleUdpate = () => {
         let tempBook = {
-            title : theBook.title,
-            author: theBook.author,
-            pages: theBook.pages,
-            status: !theBook.status,
-            id: theBook.id
+            title : book.title,
+            author: book.author,
+            pages: book.pages,
+            status: !book.status,
+            id: book.id
         }
-        setTheBook(tempBook);
-        fetch('http://localhost:8000/books/' + theBook.id, {
+        
+        fetch('http://localhost:8000/books/' + book.id, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(tempBook)
@@ -35,15 +35,15 @@ const BookCard= (props: BookCardProps) => {
     }
 
     return (
-        <div id = {theBook.id} className='bookCard'>
+        <div id = {book.id} className='bookCard'>
             <button onClick = {handleUdpate} className = "update-button">Update status</button>
             <FaWindowClose className = "delete-button" onClick = {(e)=> {handleDelete(e)}}/>
             <AiFillEdit className = "edit-button" onClick={(e) => { handleEditBook(e) }}/>
-            <h2>{theBook.title}</h2>
-            <p>Written by {theBook.author}</p>
-            <p>{theBook.pages} pages</p>
-            {!!theBook.status && (<p>Read</p>)}
-            {!theBook.status && (<p>Not read</p>)}
+            <h2>{book.title}</h2>
+            <p>Written by {book.author}</p>
+            <p>{book.pages} pages</p>
+            {!!book.status && (<p>Read</p>)}
+            {!book.status && (<p>Not read</p>)}
             
             
         </div>
