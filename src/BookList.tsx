@@ -23,7 +23,7 @@ export const BookList = (props: BookListProps) => {
 
     const { books, updateLibrary } = props;
     const [bookToEdit, setBookToEdit] = useState<Book | undefined>();
-    const [bool,setBool] = useState(false);
+    const [toggleModal,setToggleModal] = useState(false);
 
     const handleEditBook = (e: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<SVGElement,MouseEvent>)  => {
         const bookID = e.currentTarget.parentElement?.id
@@ -36,7 +36,7 @@ export const BookList = (props: BookListProps) => {
     }
 
     const handleBool = () => {
-        setBool(!bool);
+        setToggleModal(!toggleModal);
     }
     
 
@@ -57,9 +57,9 @@ return (
     <div className = "content">
         
         
-        {!!bool && (
-            <Modal resetBookToEdit={setBookToEdit} setBool = {setBool}>
-                <AddBook updateLibrary={updateLibrary} setBool={setBool} />
+        {!!toggleModal && (
+            <Modal resetBookToEdit={setBookToEdit} toggleModal = {setToggleModal}>
+                <AddBook updateLibrary={updateLibrary} toggleModal={setToggleModal} />
             </Modal>
         )}
         <div className="card-grid">
@@ -74,7 +74,7 @@ return (
         )}
         </div>
         {!!bookToEdit && (
-            <Modal resetBookToEdit={setBookToEdit} setBool = {setBool}>
+            <Modal resetBookToEdit={setBookToEdit} toggleModal = {setToggleModal}>
             <EditBook  bookToEdit = {bookToEdit} updateLibrary = {updateLibrary} resetBookToEdit={setBookToEdit}/>
             </Modal>
         )}

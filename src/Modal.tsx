@@ -3,11 +3,11 @@ import './styles/modal.css';
 interface ModalProps {
     resetBookToEdit: (arg: any) => void;
     children: any;
-    setBool: any;
+    toggleModal: (any);
 }
 
 const Modal = (props: ModalProps) => {
-    const {resetBookToEdit, children, setBool} = props;
+    const {resetBookToEdit, children, toggleModal} = props;
 
     return (
         
@@ -15,9 +15,9 @@ const Modal = (props: ModalProps) => {
             if (event.target !== event.currentTarget) {
                 return;
             }
-            
+    
             resetBookToEdit(undefined)
-            setBool(false);
+            toggleModal(false);
         }}>
             <div className = "modal">
             {children}

@@ -2,13 +2,13 @@ import { useState } from "react";
 import { projectFirestore } from './firebase/config'
 
 interface AddBookProps {
-    updateLibrary(url: string): void;
-    setBool: any;
+    updateLibrary(): void;
+    toggleModal: any;
 
 }
 const AddBook = (props: AddBookProps) => {
 
-    const { updateLibrary, setBool} = props;
+    const { updateLibrary, toggleModal} = props;
 
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -27,9 +27,9 @@ const AddBook = (props: AddBookProps) => {
             setPages('');
             setStatus(false);
         }).then(() => {
-            updateLibrary('http://localhost:8000/books/');
+            updateLibrary();
         }).then(() => {
-            setBool(false);
+            toggleModal(false);
         })
 
         
@@ -69,7 +69,7 @@ const AddBook = (props: AddBookProps) => {
                 />
                 <div className="form-buttons">
                 <button className = "button" type="submit">Add</button>
-                <button className = "cancel-button" type="button" onClick ={ () => {setBool(false)}}>Cancel</button>
+                <button className = "cancel-button" type="button" onClick ={ () => {toggleModal(false)}}>Cancel</button>
                 </div>
             </form>
             

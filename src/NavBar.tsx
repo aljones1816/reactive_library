@@ -1,9 +1,11 @@
+import { setFlagsFromString } from "v8";
 import { projectFirestore } from "./firebase/config";
 
 
 interface NavBarProps {
     filterUpdate: (arg: any) => void;
-    
+    setLogin: (arg: boolean) => void;
+    setSignup: (arg: boolean) => void;
 }
 
 const NavBar = (props: NavBarProps) => {
@@ -35,12 +37,29 @@ const NavBar = (props: NavBarProps) => {
         <div className="header" ><
             h1>Welcome to MyBrary</h1>
             <div className="filter-buttons">
-                <button className="button nav-button" onClick={() => handleFilterClick(true)}>Show only read books</button>
+                <button 
+                    className="button nav-button" 
+                    onClick={() => handleFilterClick(true)}>
+                    Show only read books
+                </button>
                 <button
-
                     className="button nav-button"
                     onClick={() => handleFilterClick(false)}>
                     Show all books
+                </button>
+            </div>
+            <div>
+                <button 
+                    className="button"
+                    onClick = {() => props.setLogin(true)}
+                >
+                    Login
+                </button>
+                <button 
+                    className="button"
+                    onClick = {() => props.setSignup(true)}
+                >
+                    Register
                 </button>
             </div>
         </div>
