@@ -165,3 +165,19 @@ html {
     color: rgb(173, 173, 173);
 }
 
+.userActionsList {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.userAction {
+  color: gray;
+  cursor: pointer;
+}
+.userAction:hover {
+  color:black;
+}

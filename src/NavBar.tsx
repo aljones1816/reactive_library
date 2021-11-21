@@ -1,5 +1,6 @@
 import { setFlagsFromString } from "v8";
 import { projectFirestore } from "./firebase/config";
+import { useLogout } from './hookDrawer/useLogout'
 
 
 interface NavBarProps {
@@ -10,6 +11,7 @@ interface NavBarProps {
 
 const NavBar = (props: NavBarProps) => {
     const handleFilterUpdate = props.filterUpdate;
+    const {logout, error, isPending } = useLogout();
     
     const handleFilterClick = (filtered: boolean) => {
         if (filtered) {
@@ -34,8 +36,30 @@ const NavBar = (props: NavBarProps) => {
 
     return (
 
-        <div className="header" ><
-            h1>Welcome to MyBrary</h1>
+        <div className="header" >
+            <ul className="userActionsList">
+                <li 
+                    className="userAction"
+                    onClick = {() => props.setLogin(true)}
+                >
+                    Login
+                </li>
+                <li 
+                    className="userAction"
+                    onClick = {() => props.setSignup(true)}
+                >
+                    Register
+                </li>
+
+                <li 
+                    className="userAction"
+                    onClick = {logout}
+                >
+                    Logout
+                </li>
+            </ul>
+            <h1>Welcome to MyBrary</h1>
+            
             <div className="filter-buttons">
                 <button 
                     className="button nav-button" 
@@ -48,20 +72,7 @@ const NavBar = (props: NavBarProps) => {
                     Show all books
                 </button>
             </div>
-            <div>
-                <button 
-                    className="button"
-                    onClick = {() => props.setLogin(true)}
-                >
-                    Login
-                </button>
-                <button 
-                    className="button"
-                    onClick = {() => props.setSignup(true)}
-                >
-                    Register
-                </button>
-            </div>
+            
         </div>
 
 

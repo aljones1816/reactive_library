@@ -49,7 +49,7 @@ export default function UserSignup(props: any) {
                 {isPending && <button className='button' disabled>Loading</button>}
                 </div>
                 {error && <p>{error}</p>}
-                <p>Already a member? <a onClick = {(e) => {handleToggle(e)}} href="#">Login</a></p>
+                <p>Already a member? <u><span className="userAction" onClick = {(e) => {handleToggle(e)}} >Login</span></u></p>
                 
             </form>
         </div>

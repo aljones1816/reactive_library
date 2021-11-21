@@ -1,12 +1,16 @@
 import { useState } from "react"
+import { useLogin } from "./hookDrawer/useLogin";
 
 export default function UserLogin( props: any) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const toggleLogin = props.toggleLogin;
     const toggleSignup = props.toggleSignup;
-    const handleSubmit = () => {
+    const {login, error, isPending} = useLogin();
 
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        login(email,password)
     }
 
     const handleToggle = (e: any) => {
@@ -32,9 +36,12 @@ export default function UserLogin( props: any) {
                 />
                 
                 <div className="form-buttons">
-                <button className='button' type='submit'>Login</button>
+                {!isPending && <button className='button' type='submit'>Login</button>}
+                {isPending && <button className='button' disabled>Loading</button>}
+                
                 </div>
-                <p>Not a member yet? <a href="#" onClick = {(e) => {handleToggle(e)}}>Sign up </a></p>
+                {error && <p>{error}</p>}
+                <p>Not a member yet? <u><span className="userAction"  onClick = {(e) => {handleToggle(e)}}>Sign up </span></u></p>
             </form>
         </div>
     )
