@@ -4,14 +4,16 @@ import { useAuthContext } from "./hookDrawer/useAuthContext";
 
 
 
+
 function App() {
-  const { authIsReady } = useAuthContext();
+  const { authIsReady} = useAuthContext();
+  const { user } =useAuthContext();
 
   return (
     
     <>
     {authIsReady && (
-      <Library />
+      <Library user={user}/>
       )}
     </>
 

@@ -7,31 +7,42 @@ interface NavBarProps {
     filterUpdate: (arg: any) => void;
     setLogin: (arg: boolean) => void;
     setSignup: (arg: boolean) => void;
+    user: any;
 }
 
 const NavBar = (props: NavBarProps) => {
     const handleFilterUpdate = props.filterUpdate;
     const { logout, error, isPending } = useLogout();
-    const { user } = useAuthContext();
+    const user = props.user;
 
     const handleFilterClick = (filtered: boolean) => {
         if (filtered) {
-            projectFirestore.collection('books').where('status', '==', true).get().then((snapshot) => {
-                let results: any[] = [];
-                snapshot.docs.forEach(doc => {
-                    results.push({ id: doc.id, ...doc.data() })
+            if (user) {
+                projectFirestore.collection('books').where('userID','==',user.uid).where('status', '==', true).get().then((snapshot) => {
+                    let results: any[] = [];
+                    snapshot.docs.forEach(doc => {
+                        results.push({ id: doc.id, ...doc.data() })
+                    })
+                    handleFilterUpdate(results)
                 })
-                handleFilterUpdate(results)
-            })
+            } else {
+
+            }
+           
 
         } else {
-            projectFirestore.collection('books').get().then((snapshot) => {
-                let results: any[] = [];
-                snapshot.docs.forEach(doc => {
-                    results.push({ id: doc.id, ...doc.data() })
+            if (user) {
+                projectFirestore.collection('books').where('userID','==',user.uid).get().then((snapshot) => {
+                    let results: any[] = [];
+                    snapshot.docs.forEach(doc => {
+                        results.push({ id: doc.id, ...doc.data() })
+                    })
+                    handleFilterUpdate(results)
                 })
-                handleFilterUpdate(results)
-            })
+            } else {
+                
+            }
+            
         }
     }
 

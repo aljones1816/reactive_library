@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { projectFirestore } from './firebase/config'
+import { useAuthContext } from "./hookDrawer/useAuthContext";
+
 
 interface AddBookProps {
     updateLibrary(): void;
@@ -9,15 +11,17 @@ interface AddBookProps {
 const AddBook = (props: AddBookProps) => {
 
     const { updateLibrary, toggleModal} = props;
-
+    const { user } = useAuthContext();
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [pages, setPages] = useState('');
     const [status, setStatus] = useState(false);
+    const [userID, setUserID] = useState(user.uid)
+    
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        const book = { title, pages, author, status };
+        const book = { title, pages, author, status, userID };
 
         
         projectFirestore.collection('books').add(book)
